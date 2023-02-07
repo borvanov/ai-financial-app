@@ -28,6 +28,11 @@ export const SignIn: React.FC = () => {
         <Styled.WelcomeMessageImage source={backgroundImage}>
           <Styled.HeaderTextBold>AI powered</Styled.HeaderTextBold>
           <Styled.HeaderText>Financial Manager</Styled.HeaderText>
+          <Styled.HeaderDescription>
+            Use the power of AI to get your finances organized and structured.
+            Scan tips, record voice messages and communicate with your financial
+            manager via text.
+          </Styled.HeaderDescription>
         </Styled.WelcomeMessageImage>
         <Styled.WelcomeMessageImageFade />
       </Styled.WelcomeMessageView>
@@ -36,7 +41,7 @@ export const SignIn: React.FC = () => {
 
       <Styled.LoginOptionsView>
         {LOGIN_OPTIONS.map(({name, icon, optionColor, size}) => (
-          <Styled.LoginOption key={name}>
+          <Styled.LoginOption key={name} activeOpacity={0.9}>
             <FontAwesomeIcon
               size={size || 24}
               icon={icon}

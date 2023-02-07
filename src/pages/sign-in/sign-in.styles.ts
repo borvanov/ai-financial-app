@@ -50,7 +50,7 @@ export const LoginOptionsView = styled.View`
   gap: 10px;
 `;
 
-export const LoginOption = styled.TouchableHighlight`
+export const LoginOption = styled.TouchableOpacity`
   flex: 1;
   height: 60px;
   border-radius: 40px;
@@ -71,4 +71,9 @@ export const LoginWithText = styled.Text`
   width: 100%;
   margin: 30px 0 20px 0;
   color: rgba(255, 255, 255, 0.6);
+`;
+
+export const HeaderDescription = styled.Text`
+  margin-top: 20px;
+  font-family: 'Poppins';
 `;
