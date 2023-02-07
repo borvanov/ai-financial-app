@@ -2,12 +2,15 @@
   "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
     "baseUrl": "./src",
+    "lib": ["es6"],
     "paths": {
       "@shared/*": ["shared/*"],
       "@pages/*": ["pages/*"]
     },
-    "types": ["@types/styled-components-react-native"],
-    "typeRoots": [".src/@types", "node_modules/@types"]
+    "types": ["@types/styled-components-react-native", "reflect-metadata"],
+    "typeRoots": [".src/@types", "node_modules/@types"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "include": ["src"]
 }
