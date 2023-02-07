@@ -1,0 +1,13 @@
+{
+  "extends": "@tsconfig/react-native/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@shared/*": ["shared/*"],
+      "@pages/*": ["pages/*"]
+    },
+    "types": ["@types/styled-components-react-native"],
+    "typeRoots": [".src/@types", "node_modules/@types"]
+  },
+  "include": ["src"]
+}
