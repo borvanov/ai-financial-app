@@ -1,17 +1,22 @@
 import React from 'react';
-import {IconFill, FillGlyphMapType} from '@ant-design/icons-react-native';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faApple} from '@fortawesome/free-brands-svg-icons/faApple';
+import {faGoogle} from '@fortawesome/free-brands-svg-icons/faGoogle';
+import {faFacebook} from '@fortawesome/free-brands-svg-icons/faFacebook';
+import {IconDefinition} from '@fortawesome/fontawesome-svg-core';
 
 import * as Styled from './sign-in.styles';
 import {backgroundImage} from '../../assets';
 
 const LOGIN_OPTIONS: Array<{
   name: string;
-  icon: FillGlyphMapType;
+  icon: IconDefinition;
   optionColor: string;
+  size?: number;
 }> = [
-  {name: 'Google', icon: 'google-square', optionColor: ''},
-  {name: 'Facebook', icon: 'facebook', optionColor: ''},
-  {name: 'Apple', icon: 'apple', optionColor: ''},
+  {name: 'Facebook', icon: faFacebook, optionColor: '#4267B2'},
+  {name: 'Apple', icon: faApple, optionColor: '#282828'},
+  {name: 'Google', icon: faGoogle, optionColor: '#DB4437', size: 22},
 ];
 
 export const SignIn: React.FC = () => {
@@ -30,9 +35,13 @@ export const SignIn: React.FC = () => {
       <Styled.LoginWithText>Login with</Styled.LoginWithText>
 
       <Styled.LoginOptionsView>
-        {LOGIN_OPTIONS.map(({name, icon}) => (
+        {LOGIN_OPTIONS.map(({name, icon, optionColor, size}) => (
           <Styled.LoginOption key={name}>
-            <IconFill name={icon} />
+            <FontAwesomeIcon
+              size={size || 24}
+              icon={icon}
+              color={optionColor}
+            />
             {/* <Styled.LoginOptionText>{name}</Styled.LoginOptionText> */}
           </Styled.LoginOption>
         ))}
