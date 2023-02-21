@@ -6,6 +6,7 @@
  */
 
 import React from 'react';
+import 'reflect-metadata';
 // import type {PropsWithChildren} from 'react';
 
 import {App} from './src/app.component';
