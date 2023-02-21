@@ -11,7 +11,6 @@ export const viewStyle = {
 };
 
 export const Image = styled.ImageBackground`
-  flex: 1;
   flex-direction: column;
   justify-content: flex-end;
   padding: 20px 20px 30px 20px;

@@ -6,9 +6,9 @@ export const MainBackgroundImage: React.FC<{
   style?: StyleProp<ViewStyle>;
   imageStyle?: StyleProp<ImageStyle>;
   children?: React.ReactNode;
-}> = ({style, children, imageStyle}) => (
+}> = ({children, style, imageStyle}) => (
   <Styled.ImageView style={[Styled.viewStyle, style]}>
-    <Styled.Image source={backgroundImage} style={[imageStyle]}>
+    <Styled.Image source={backgroundImage} style={[style, imageStyle]}>
       {children}
     </Styled.Image>
   </Styled.ImageView>

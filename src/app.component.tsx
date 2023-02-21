@@ -89,7 +89,7 @@ export const App = () => {
                   screenOptions={({route}) => ({
                     headerShown: false,
                     tabBarIcon: renderTabBarIcon(route.name),
-                    tabBarActiveTintColor: palette.secondary.main,
+                    tabBarActiveTintColor: palette.common.light,
                     tabBarInactiveTintColor: palette.fourth.main,
                     tabBarLabelStyle: {
                       fontFamily: typography.fontFamily.primary,
