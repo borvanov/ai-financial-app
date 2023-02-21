@@ -7,6 +7,7 @@ export interface AuthServiceType {
 
   socialSignIn: (network: string) => void;
   retrieveAuthorizationInformation: () => void;
+  logout: () => void;
 }
 
 export const AuthServiceContainerType = Symbol.for('AuthService');

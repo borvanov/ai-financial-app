@@ -4,6 +4,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {injectable, decorate} from 'inversify';
 import {AuthInfo, AuthServiceType} from './auth.types';
 
+const TOKEN_STORAGE_NAME = '@Token'; // TODO: move the storage key to Storage Service
+
 export class AuthService implements AuthServiceType {
   public authorizationInfo$: BehaviorSubject<AuthInfo | null | undefined> =
     new BehaviorSubject<AuthInfo | null | undefined>(undefined);
@@ -11,20 +13,23 @@ export class AuthService implements AuthServiceType {
   constructor() {
     this.retrieveAuthorizationInformation =
       this.retrieveAuthorizationInformation.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   public retrieveAuthorizationInformation(): void {
     try {
-      AsyncStorage.getItem('@Token').then(storedAuthorizationInfoJson => {
-        if (storedAuthorizationInfoJson) {
-          const storedAuthorizationInfo = JSON.parse(
-            storedAuthorizationInfoJson,
-          );
-          this.authorizationInfo$.next(storedAuthorizationInfo as AuthInfo);
-        } else {
-          this.authorizationInfo$.next(null);
-        }
-      }); // TODO: move the storage key to Storage Service
+      AsyncStorage.getItem(TOKEN_STORAGE_NAME).then(
+        storedAuthorizationInfoJson => {
+          if (storedAuthorizationInfoJson) {
+            const storedAuthorizationInfo = JSON.parse(
+              storedAuthorizationInfoJson,
+            );
+            this.authorizationInfo$.next(storedAuthorizationInfo as AuthInfo);
+          } else {
+            this.authorizationInfo$.next(null);
+          }
+        },
+      );
     } catch (error) {}
   }
 
@@ -41,10 +46,17 @@ export class AuthService implements AuthServiceType {
           isPreferred: true,
           onPress: () => {
             this.authorizationInfo$.next({});
+            AsyncStorage.setItem(TOKEN_STORAGE_NAME, JSON.stringify({}));
           },
         },
       ],
     );
+  }
+
+  public logout(): void {
+    AsyncStorage.removeItem(TOKEN_STORAGE_NAME).then(() => {
+      this.authorizationInfo$.next(null);
+    });
   }
 }
 

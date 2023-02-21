@@ -11,6 +11,8 @@ import {IconDefinition} from '@fortawesome/free-solid-svg-icons';
 
 import {SignIn} from '@pages/sign-in';
 import {Dashboard} from '@pages/dashboard';
+import {Settings} from '@pages/settings';
+import {Statistics} from '@pages/statistics';
 
 import {injectAuthService} from '@shared/services';
 import {defaultTheme} from '@shared/configurations/theme.configuration';
@@ -80,15 +82,24 @@ export const App = () => {
         <NavigationContainer>
           {isUserAuthorized ? (
             <ThemeConsumer>
-              {({palette}) => (
+              {({palette, typography}) => (
                 <Navigator
                   initialRouteName={MainNavigatorRouteNames.DashboardRoute}
                   sceneContainerStyle={{backgroundColor: palette.common.dark}}
                   screenOptions={({route}) => ({
                     headerShown: false,
                     tabBarIcon: renderTabBarIcon(route.name),
-                    tabBarActiveTintColor: palette.primary.main,
+                    tabBarActiveTintColor: palette.secondary.main,
                     tabBarInactiveTintColor: palette.fourth.main,
+                    tabBarLabelStyle: {
+                      fontFamily: typography.fontFamily.primary,
+                    },
+                    tabBarStyle: {
+                      backgroundColor: palette.common.dark,
+                    },
+                    tabBarItemStyle: {
+                      borderWidth: 0,
+                    },
                   })}>
                   <Screen
                     name={MainNavigatorRouteNames.DashboardRoute}
@@ -96,11 +107,11 @@ export const App = () => {
                   />
                   <Screen
                     name={MainNavigatorRouteNames.StatisticsRoute}
-                    component={Dashboard}
+                    component={Statistics}
                   />
                   <Screen
                     name={MainNavigatorRouteNames.SettingsRoute}
-                    component={Dashboard}
+                    component={Settings}
                   />
                 </Navigator>
               )}

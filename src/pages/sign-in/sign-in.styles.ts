@@ -25,7 +25,7 @@ export const LoginOptionsView = styled.View`
 
 export const LoginOption = styled.TouchableOpacity`
   flex: 1;
-  height: 60px;
+  height: 50px;
   border-radius: 40px;
   background-color: ${({theme}) => theme.palette.common.light};
 
@@ -34,7 +34,6 @@ export const LoginOption = styled.TouchableOpacity`
 `;
 
 export const LoginWithText = styled(Text.Regular)`
-  font-size: 16px;
   text-align: center;
   width: 100%;
   margin: 30px 0 20px 0;
