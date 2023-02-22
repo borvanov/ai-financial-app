@@ -7,12 +7,14 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faTableColumns} from '@fortawesome/free-solid-svg-icons/faTableColumns';
 import {faGears} from '@fortawesome/free-solid-svg-icons/faGears';
 import {faChartLine} from '@fortawesome/free-solid-svg-icons/faChartLine';
+import {faMicrophone} from '@fortawesome/free-solid-svg-icons/faMicrophone';
 import {IconDefinition} from '@fortawesome/free-solid-svg-icons';
 
 import {SignIn} from '@pages/sign-in';
 import {Dashboard} from '@pages/dashboard';
 import {Settings} from '@pages/settings';
 import {Statistics} from '@pages/statistics';
+import {Record} from '@pages/record';
 
 import {injectAuthService} from '@shared/services';
 import {defaultTheme} from '@shared/configurations/theme.configuration';
@@ -22,6 +24,7 @@ enum MainNavigatorRouteNames {
   DashboardRoute = 'Dashboard',
   StatisticsRoute = 'Statistics',
   SettingsRoute = 'Settings',
+  RecordRoute = 'Record',
 }
 
 function getTabIconByName(
@@ -34,6 +37,8 @@ function getTabIconByName(
       return faChartLine;
     case MainNavigatorRouteNames.SettingsRoute:
       return faGears;
+    case MainNavigatorRouteNames.RecordRoute:
+      return faMicrophone;
     default:
       return null;
   }
@@ -44,11 +49,20 @@ function renderTabBarIcon(routeName: string): React.FC<{
   color: string;
   size: number;
 }> {
-  return ({color}) => {
+  return ({color, focused}) => {
     const icon = getTabIconByName(routeName as MainNavigatorRouteNames);
 
     if (icon) {
-      return <FontAwesomeIcon icon={icon} color={color} />;
+      return (
+        <FontAwesomeIcon
+          icon={icon}
+          color={
+            routeName === MainNavigatorRouteNames.RecordRoute && !focused
+              ? '#DB2B39'
+              : color
+          }
+        />
+      );
     }
 
     return null;
@@ -89,29 +103,35 @@ export const App = () => {
                   screenOptions={({route}) => ({
                     headerShown: false,
                     tabBarIcon: renderTabBarIcon(route.name),
-                    tabBarActiveTintColor: palette.common.light,
+                    tabBarActiveTintColor: palette.secondary.main,
                     tabBarInactiveTintColor: palette.fourth.main,
                     tabBarLabelStyle: {
                       fontFamily: typography.fontFamily.primary,
                     },
                     tabBarStyle: {
-                      backgroundColor: palette.common.dark,
+                      // backgroundColor: palette.common.dark,
+                      backgroundColor: '#101317',
+                      borderTopWidth: 0,
                     },
                     tabBarItemStyle: {
                       borderWidth: 0,
                     },
                   })}>
                   <Screen
-                    name={MainNavigatorRouteNames.DashboardRoute}
-                    component={Dashboard}
-                  />
-                  <Screen
                     name={MainNavigatorRouteNames.StatisticsRoute}
                     component={Statistics}
                   />
                   <Screen
+                    name={MainNavigatorRouteNames.DashboardRoute}
+                    component={Dashboard}
+                  />
+                  <Screen
                     name={MainNavigatorRouteNames.SettingsRoute}
                     component={Settings}
+                  />
+                  <Screen
+                    name={MainNavigatorRouteNames.RecordRoute}
+                    component={Record}
                   />
                 </Navigator>
               )}

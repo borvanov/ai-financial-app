@@ -4,13 +4,13 @@ module.exports = {
     [
       'module-resolver',
       {
-        root: ['./'],
+        root: ['./src'],
+        extensions: ['.ios.js', '.android.js', '.js', '.ts', '.tsx', '.json'],
         alias: {
           '@shared': './src/shared',
           '@pages': './src/pages',
         },
       },
     ],
-    ['@babel/plugin-proposal-decorators', {decoratorsBeforeExport: true}],
   ],
 };
