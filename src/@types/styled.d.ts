@@ -18,6 +18,8 @@ declare module 'styled-components' {
       secondary: PaletteColor;
       third: PaletteColor;
       fourth: PaletteColor;
+      fifth: PaletteColor;
+      sixths: PaletteColor;
     };
 
     typography: {

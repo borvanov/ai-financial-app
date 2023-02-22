@@ -8,6 +8,8 @@ export const defaultTheme: DefaultTheme = {
     secondary: {main: '#8FB339', contrastText: ''},
     third: {main: '#C7D59F', contrastText: ''},
     fourth: {main: '#4B5842', contrastText: ''},
+    fifth: {main: '#d61355', contrastText: ''},
+    sixths: {main: '#1C242F', contrastText: ''},
   },
   typography: {
     fontFamily: {

@@ -34,7 +34,7 @@ export const NotificationText = styled(Text.Regular)`
 `;
 
 export const TextColored = styled(NotificationText)`
-  color: #d61355;
+  color: ${({theme}) => theme.palette.fifth.main};
   font-weight: 700;
 `;
 
@@ -69,8 +69,7 @@ export const HistoryHeader = styled(Text.Header1)`
 `;
 
 export const RecordContainer = styled.View`
-  /* background-color: ${({theme}) => theme.palette.fourth.main}; */
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: ${({theme}) => theme.palette.sixths.main};
   padding: 10px;
   border-radius: 5px;
   margin-top: 10px;
